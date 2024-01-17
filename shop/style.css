@@ -1,0 +1,50 @@
+/* You can still customize additional styles here */
+.product-item {
+    margin-bottom: 20px;
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.catalog-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Responsive styling based on screen orientation */
+@media (orientation: landscape) {
+    .product-item {
+        width: 30%; /* Adjust the width as needed for landscape orientation */
+    }
+}
+
+@media (orientation: portrait) {
+    .product-item {
+        width: 45%; /* Adjust the width as needed for portrait orientation */
+    }
+}

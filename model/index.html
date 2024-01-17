@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Weather App</title>
+  <style>
+    /* Your custom CSS styles go here */
+    body {
+      padding-top: 56px;
+      /* Adjust the top padding to accommodate the fixed navbar */
+    }
+    .container {
+      height: 500px;
+    }
+    .navbar {
+      background-color: #ffffff;
+      /* Change navbar background color to white */
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+      color: #03ae39;
+      /* Change font color on the navbar to #03ae39 */
+    }
+
+    .header {
+      background-color: #ffffff;
+      /* Change header background color to white */
+      color: #03ae39;
+      /* Change font color in the header to #03ae39 */
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .introduction {
+      background-color: #f8f9fa;
+      padding: 80px 0;
+    }
+
+    .picture-description {
+      padding: 80px 0;
+    }
+
+    .picture-description img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .feature-box {
+      margin-bottom: 40px;
+    }
+
+    .footer {
+      background-color: #03ae39;
+      color: #ffffff;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    .nav-link {
+      color: #03ae39;
+    }
+
+    .top-banner {
+      padding: 20px 0;
+    }
+    .weather-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px; /* Adjust the margin as needed */
+    }
+
+    .weather-info {
+      flex: 1;
+      margin-right: 10px; /* Adjust the margin as needed */
+    }
+
+    .form-container {
+      flex: 1;
+      margin-top: 20px;
+    }
+    
+    .chat-container {
+            margin: 20px auto;
+        }
+
+        .chat-messages {
+            max-height: 300px;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+
+        .user-input {
+            display: flex;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        .user-input input {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+
+        .user-input button {
+            padding: 8px;
+            border: none;
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .message-text {
+            padding: 8px;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: #4caf50;
+            color: #fff;
+            align-self: flex-end;
+        }
+
+        .bot-message {
+            background-color: #008CBA;
+            color: #fff;
+            align-self: flex-start;
+        }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-white bg-white">
+      <a class="navbar-brand" href="#">termitorous</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../login/login.html">Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Settings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../landingPage/about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <section class="top-banner">
+      <div class="container"> 
+        <h2>Asisten Pertanian Anda</h2>          
+         <form class="form" id="weatherForm">
+              <div class="input-group">
+                <input type="text" class="form-control" id="cityInput" placeholder="Search for a city..." />
+                <div class="input-group-append">
+                  <button class="btn btn-success" type="submit">Submit</button>
+                </div>
+              </div>
+        <div class="weather-container">
+          <div class="weather-info">
+
+            </form>
+            <ul class="list-group" id="weatherList"></ul>
+          </div>
+          <div class="form-container">
+            <h4>Cek Kondisi Tanaman Anda..!</h4>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="fileInput">Choose a file:</label>
+                <input type="file" class="form-control-file" id="fileInput" name="fileInput">
+              </div>
+              <button type="submit" class="btn btn-success">Upload</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- section 2 -->
+    <section class="ajax-section">
+    </section>
+  </div>
+  <div class="container">
+    <h2>Tanya dengan Asisten Pertanian Anda</h2>
+    <div class="row">
+        <div class="col chat-container border rounded">
+            <div class="chat-messages" id="chat-messages">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <div class="user-input">
+                <input type="text" class="form-control" id="user-message" placeholder="Type your message...">
+                <button class="btn btn-success" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+      <p>© 2023 termitorous. All rights reserved.</p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("weatherForm");
+    const input = document.getElementById("cityInput");
+    const list = document.getElementById("weatherList");
+    const apiKey = "a96370fc68b837af41891380246f1463";
+
+    function fetchWeatherByCity(city) {
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          const { main, name, sys, weather } = data;
+          const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${weather[0]["icon"]}.svg`;
+
+          const li = document.createElement("li");
+          li.classList.add("list-group-item");
+          const markup = `
+            <h2 class="city-name" data-name="${name}, ${sys.country}">
+              <span>${name}</span>, 
+              <span class="country-badge">${sys.country}</span>
+            </h2>
+            <div class="city-temp">${Math.round(main.temp)}°C</div>
+            <figure>
+              <img class="city-icon" src="${icon}" alt="city"/>
+              <figcaption>${weather[0]["description"]}</figcaption>
+            </figure>
+          `;
+          li.innerHTML = markup;
+          list.appendChild(li);
+        })
+        .catch(() => {
+          alert("City Not Found !");
+        });
+    }
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          const { latitude, longitude } = position.coords;
+          fetchWeatherByCoordinates(latitude, longitude);
+        });
+      } else {
+        alert("Geolocation is not supported by your browser");
+      }
+    }
+
+    function fetchWeatherByCoordinates(latitude, longitude) {
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          const { main, name, sys, weather } = data;
+          const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${weather[0]["icon"]}.svg`;
+
+          const li = document.createElement("li");
+          li.classList.add("list-group-item");
+          const markup = `
+            <h2 class="city-name" data-name="${name}, ${sys.country}">
+              <span>${name}</span>, 
+              <span class="country-badge">${sys.country}</span>
+            </h2>
+            <div class="city-temp">${Math.round(main.temp)}°C</div>
+            <figure>
+              <img class="city-icon" src="${icon}" alt="city"/>
+              <figcaption>${weather[0]["description"]}</figcaption>
+            </figure>
+          `;
+          li.innerHTML = markup;
+          list.appendChild(li);
+        })
+        .catch(() => {
+          alert("City Not Found !");
+        });
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const inputVal = input.value;
+      fetchWeatherByCity(inputVal);
+      input.value = "";
+    });
+
+    // Fetch weather based on user's location on page load
+    getLocation();
+  });
+  function sendMessage() {
+        const userMessage = document.getElementById("user-message").value;
+        displayMessage("user", userMessage);
+        // Send the user message to your AI integration and get the response
+        const aiResponse = "This is a sample AI response."; // Replace with actual AI integration logic
+        displayMessage("bot", aiResponse);
+        document.getElementById("user-message").value = ""; // Clear the input field
+    }
+
+    function displayMessage(sender, message) {
+        const chatMessages = document.getElementById("chat-messages");
+        const messageDiv = document.createElement("div");
+        messageDiv.className = `message ${sender}-message`;
+        
+        // Add avatar to the message
+        const avatarDiv = document.createElement("div");
+        avatarDiv.className = "avatar";
+        const avatarImg = document.createElement("img");
+        avatarImg.src = `https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png`; // Replace with the path to your avatar images
+        avatarDiv.appendChild(avatarImg);
+        messageDiv.appendChild(avatarDiv);
+        
+        // Add message text
+        const textDiv = document.createElement("div");
+        textDiv.className = "message-text";
+        textDiv.textContent = message;
+        messageDiv.appendChild(textDiv);
+
+        chatMessages.appendChild(messageDiv);
+        // Scroll to the bottom to show the latest message
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GNJYMZH4E8">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GNJYMZH4E8');
+</script>
+</body>
+
+</html>

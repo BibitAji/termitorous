@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column; /* Mengatur tata letak flex ke kolom */
+        }
+
+        .container-fluid {
+            display: flex;
+            flex: 1;
+        }
+
+        .col-md-4 {
+            padding: 20px;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-details {
+            padding: 20px;
+        }
+
+        .order-section {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .order-button {
+            margin-top: 10px;
+        }
+
+        .card-body h5 {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-white bg-white">
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searchButton">Search</button>
+    </form>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="..\about.html">About</a>
+                </li>
+                <!-- Tambahkan elemen pencarian -->
+                <li class="nav-item">
+  
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <!-- Column 1: Product Image -->
+        <div class="col-md-4">
+            <img src="" alt="Product Image" class="product-image" id="productImage">
+        </div>
+
+        <!-- Column 2: Product Details -->
+        <div class="col-md-4 product-details">
+            <h2 id="productName"></h2>
+            <p id="storeName"></p>
+            <p id="storeAddress"></p>
+            <p id="productPrice"></p>
+            <p id="productDescription"></p>
+            <div id="productReviews"></div>
+        </div>
+
+        <!-- Column 3: Order Section -->
+        <div class="col-md-4 order-section">
+            <h3>Pesanan Anda</h3>
+            <div>
+                <label for="quantity">Jumlah:</label>
+                <input type="number" id="quantity" min="1" value="1">
+            </div>
+            <button class="btn btn-success order-button" id="orderButton">Buat Pesanan</button>
+            <button class="btn btn-secondary order-button" id="addToCartButton">Tambah ke Keranjang</button>
+        </div>
+    </div>
+  </div>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Your custom JavaScript -->
+    <script src="product-details.js"></script>
+</body>
+</html>

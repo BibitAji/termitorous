@@ -1,0 +1,46 @@
+/* styles.css */
+
+body {
+    background-color: #000000;
+  }
+  
+  .header {
+    background-color: #04d060;
+    color: #ffffff;
+    padding: 60px 0;
+    text-align: center;
+  }
+  
+  .introduction {
+    background-color: #f8f9fa;
+    padding: 80px 0;
+  }
+  
+  .picture-description {
+    padding: 80px 0;
+  }
+  
+  .picture-description img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .feature-box {
+    margin-bottom: 40px;
+  }
+  
+  .footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 30px 0;
+    text-align: center;
+  }
+  .wide{
+    width: fit-content;
+    height: 10px;
+  }
+  /* Additional Styles for Navbar */
+  .navbar {
+    margin-bottom: 30px;
+  }
+  

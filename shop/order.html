@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Gaya untuk halaman pemesanan */
+    #order-page {
+      max-width: 800px;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+  </style>
+  <title>Halaman Pemesanan</title>
+</head>
+<body>
+
+<div id="order-page" class="container mt-5">
+  <h2>Formulir Pemesanan</h2>
+  <form id="orderForm">
+    <div class="form-group">
+      <label for="productName">Nama Produk:</label>
+      <input type="text" class="form-control" id="productName" readonly value="Product Name">
+    </div>
+
+    <div class="form-group">
+      <label for="productPrice">Harga:</label>
+      <input type="text" class="form-control" id="productPrice" readonly value="$25.99">
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Jumlah:</label>
+      <input type="number" class="form-control" id="quantity" min="1" value="1">
+    </div>
+
+    <div class="form-group">
+      <label for="totalPrice">Total Harga:</label>
+      <input type="text" class="form-control" id="totalPrice" readonly>
+    </div>
+
+    <button type="button" class="btn btn-success" onclick="placeOrder()">Buat Pesanan</button>
+  </form>
+</div>
+
+<script>
+  function placeOrder() {
+    // Dummy logic untuk memproses pesanan
+    const quantity = parseInt(document.getElementById('quantity').value);
+    const totalPrice = quantity * 25.99; // Harga produk
+
+    // Setelah pesanan berhasil dibuat, alihkan ke halaman sukses
+    window.location.href = `order-sucess.html?quantity=${quantity}&totalPrice=${totalPrice.toFixed(2)}`;
+  }
+
+  // Menghitung total harga berdasarkan jumlah yang dipilih
+  function updateTotalPrice() {
+    const quantity = document.getElementById('quantity').value;
+    const totalPrice = quantity * 25.99; // Harga produk
+    document.getElementById('totalPrice').value = `$${totalPrice.toFixed(2)}`;
+  }
+
+  // Event listener untuk perubahan jumlah
+  document.getElementById('quantity').addEventListener('input', updateTotalPrice);
+
+  // Memanggil fungsi updateTotalPrice untuk menginisialisasi total harga
+  updateTotalPrice();
+</script>
+
+</body>
+</html>
